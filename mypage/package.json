@@ -14,6 +14,8 @@
     "bootstrap-icons": "^1.11.3",
     "dayjs": "^1.11.13",
     "express-validator": "^7.2.0",
+    "framer-motion": "^12.4.10",
+    "my_portfolio": "file:",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",

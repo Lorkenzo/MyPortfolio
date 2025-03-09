@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { Home } from "./Components/Home";
 import "./App.css";
-import MyLogo from "./assets/leafless-tree.png"
 
 function App() {
-
     return (
- 
-        <img src={MyLogo} alt="leafless-logo" ></img>
+        <>
+        <Home></Home>
+        <div className="mt-[100%]"> Ciao </div>
+        </>
     );
 }
 
