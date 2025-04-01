@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 import tailwindAnimated from 'tailwindcss-animated';
+import tailwindScrollbar from 'tailwind-scrollbar'
 export default {
   darkMode: 'selector',
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
@@ -11,13 +12,16 @@ export default {
       colors: {
         my_gray: 'var(--my-gray)',
       },
-      backgroundColor: {
-        my_gradient: 'var(--my-gradient)'
+      backgroundImage: {
+        my_gradient: 'var(--my-gradient)',
+        my_gradient_opp: 'var(--my-gradient-opp)',
+        my_gradient_reversed: 'var(--my-gradient-reversed)'
       },
     },
   },
   plugins: [
-    tailwindAnimated
+    tailwindAnimated,
+    tailwindScrollbar
   ],
   important: true
 }
