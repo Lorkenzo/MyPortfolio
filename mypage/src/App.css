@@ -75,12 +75,26 @@ body {
   margin-left: 2px;
 }
 
-.flip-animation {
-  transform: perspective(1000px) rotateY(360deg);
-  transition: transform 1s ease-in-out;
+.slide{
+  perspective: 1000px;
+  position: relative;
+  transition:transform 2000ms;
+  transform-style: preserve-3d;
 }
 
-.block {
-  transform-style: preserve-3d;
+.front-slide,
+.back-slide {
+  position: absolute;
   backface-visibility: hidden;
+}
+
+.back-slide{
+  transform: rotateY(180deg);
+}
+
+.left-flip{
+  transform:rotateY(180deg);
+}
+.right-flip{
+  transform:rotateY(-180deg);
 }

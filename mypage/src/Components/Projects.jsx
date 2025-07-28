@@ -14,6 +14,7 @@ import getLogo from './Utilities/utilities';
 
 function Projects({isMobile, refprop }) {
     const [flippedIndex, setFlippedIndex] = useState(null);
+    const [swipeDirection, setSwipeDirection] = useState(null);
     const [ariplaneAnimation, setAriplaneAnimation] = useState(false)
 
     const projects = [1, 2, 3, 4, 5];
@@ -33,6 +34,14 @@ function Projects({isMobile, refprop }) {
         5: "A user-friendly local multiplatform screensharing application - team project",
     }
 
+    const projects_url = {
+        1: 'https://github.com/Lorkenzo/MemeGame',
+        2: "https://github.com/Lorkenzo/ARM-Quoridor",
+        3: "https://github.com/pettykanon/02-Kiruna-Explorer",
+        4: "https://github.com/Lorkenzo/N-Puzzle_LayerSolver",
+        5: "https://github.com/marioleonardo/rust-screenshare",
+    }
+
     const Features1 = ["html5","css3","js","react","bootstrap","sqlite"]
     const Features2 = ["c"]
     const Features3 = ["html5","css3","js","react","tailwind","sqlite"]
@@ -48,114 +57,132 @@ function Projects({isMobile, refprop }) {
     }
 
     return (
-        <div className="flex flex-col w-screen h-screen place-content-center" ref={refprop}>
-            <div className="w-full h-[15%] justify-items-center content-end text-center">
-                <p className={`text-[32px] font-semibold font-mono`}>My Projects</p>
-            </div>
+        <div className="flex w-full h-screen items-end" ref={refprop}>
+            <div className="flex flex-col w-full h-[calc(100%-64px)] place-content-center">
+                <div className="flex w-full h-[15%] justify-center items-center">
+                    <p className={`text-[32px] font-semibold font-mono`}>My Projects</p>
+                </div>
 
-            <div className="flex w-full h-[80%] items-center">
-                <Swiper
-                    spaceBetween={20}
-                    slidesPerView={isMobile?2:3}
-                    loop={true}
-                    centeredSlides={true}
-                    navigation={true}
-                    
-                    mousewheel={true}
-                    pagination={{
-                        clickable: true
-                    }}
-                    modules={[Navigation, Pagination]}
-                    className="flex flex-row h-[85%] w-[80%] items-center pt-4"
-                    nested={true}
-                    //cssMode={true}
-                    onSlideChange={(swiper) => {
-                        setFlippedIndex(swiper.realIndex); // aggiorni quando cambia slide
-                      }}
-                >
-                    {projects.map((e, i) => (
-                        <SwiperSlide key={i}>
-                            {({ isPrev, isActive, isNext }) => {
-                                let bgClass = "";
-                                let overlay_gradient = ""
-                                if (isPrev) {
-                                    bgClass = "bg-my_gradient"
-                                    overlay_gradient = "bg-gradient-to-l from-transparent to-white"
-                                }
-                                else if (isActive) bgClass = "bg-my_gray drop-shadow-xl";
-                                else if (isNext) {
-                                    bgClass = "bg-my_gradient_opp"
-                                    overlay_gradient = "bg-gradient-to-r from-transparent to-white"
-                                }
-                                else bgClass = "bg-white";
-
-                                const flipClass = flippedIndex === i ? 'flip-animation' : '';
-                                return (
-                                    <>
-                                    <div className={`block h-full rounded-xl ${bgClass} items-center justify-center text-black overflow-hidden pb-4`}>
-                                        {/* Gradient Overlay */}
-                                        <div className={`absolute inset-0 ${overlay_gradient}`}></div>
-                                        <div className='flex flex-col h-full w-full justify-around'>
-                                            <div className='flex h-[40%] justify-center rounded-xl overflow-hidden m-3'>
-                                                <img className={`w-fit object-cover transition-all delay-300`} src={projects_images[i+1]}></img>
-                                            </div>
-
-                                            { flippedIndex === i &&
-                                            <div className='flex flex-col h-[30%] mx-4 mb-3 rounded-xl max-md:m-2'>
-                                                <p className='font-mono font-semibold'>Description</p>
-                                                <p className={`text-wrap font-mono text-justify max-md:text-[12px]`}>
-                                                    {projects_desc[i+1]}
-                                                </p>
-                                            </div>}
-                                            { flippedIndex === i &&
-                                            <div className='flex flex-col h-[30%] mx-4 mb-4'>
-                                                <p className='font-mono font-semibold'>Features</p>
-                                                <div className='mt-2 pb-2'>
-                                                    <Swiper
-                                                        direction={'horizontal'}
-                                                        slidesPerView={4}
-                                                        freeMode={true}
-                                                        mousewheel={true}
-                                                        scrollbar= {true}
-                                                        modules={[FreeMode, Scrollbar, Mousewheel]}
-                                                        //className='overflow-y-visible scrollbar-track-black scrollbar-thumb-white'
-                                                        >
-                                                        {projects_feature_logos[i+1].map((e,i)=>
-                                                            <SwiperSlide><img key={i} className="h-14 object-cover overflow-hidden max-md:h-10" src={getLogo(e)} /></SwiperSlide>
-                                                        )}
-                                                    </Swiper>
-                                                </div>
-                                            </div>}
-                                            {flippedIndex === i &&
-                                            <div className={`absolute inset-x-0 bottom-0 h-[100%] z-[1000] translate-y-[90%] transition-all ease-in-out duration-300 hover:translate-y-0`}>
-                                                
-                                                <div className="flex absolute inset-x-0 top-0 h-[10%] bg-my_gradient_reversed rounded-t-xl drop-shadow-xl justify-center">
-                                                    <button><i className='bi bi-arrow-bar-up fs-2'></i></button>
-                                                </div>
-                                                
-                                                <div className='flex absolute inset-x-0 bottom-0 h-[90%] bg-[#c0bfbf] opacity-90'>
-                                                    <a target='blank' href='https://github.com/' className={`flex flex-col my-auto w-full no-underline cursor-pointer text-black place-items-center place-content-center hover:text-white`}
-                                                     onMouseEnter={()=>setAriplaneAnimation(true)}
-                                                     onMouseLeave={()=>setAriplaneAnimation(false)}>
-                                                        <p className='text-wrap text-[24px] font-mono font-bold w-[60%] text-center'>Dive into the project!</p> 
-
-                                                        <i className="bi bi-airplane-engines-fill fs-1 rotate-45"></i>
-
-                                                        
-                                                    </a>
-                                                </div>
-                                                
-                                            </div>}
-
-                                        </div>
-                                    </div>
-                                    </>
-                                );
-                            }}
-                        </SwiperSlide>
+                <div className="flex w-full h-[85%] items-center">
+                    <Swiper
+                        spaceBetween={20}
+                        slidesPerView={isMobile?2:3}
+                        loop={true}
+                        centeredSlides={true}
+                        navigation={true}
                         
-                    ))}
-                </Swiper>
+                        mousewheel={true}
+                        pagination={{
+                            clickable: true
+                        }}
+                        modules={[Navigation, Pagination]}
+                        className="flex flex-row h-[90%] w-[90%] items-center pt-4"
+                        nested={true}
+                        //cssMode={true}
+                        onSlideChange={(swiper) => {
+                            const newIndex = swiper.realIndex;
+                            const direction = newIndex > flippedIndex || (newIndex === 0 && flippedIndex === projects.length - 1)
+                                ? 'left'
+                                : 'right';
+                            setSwipeDirection(direction);
+                            setFlippedIndex(newIndex);
+                        }}
+                    >
+                        {projects.map((e, i) => (
+                            <SwiperSlide key={i}>
+                                {({ isPrev, isActive, isNext }) => {
+                                    let bgClass = "";
+                                    let overlay_gradient = ""
+                                    if (isPrev) {
+                                        bgClass = "bg-my_gradient"
+                                        overlay_gradient = "bg-gradient-to-l from-transparent to-white"
+                                    }
+                                    else if (isActive) bgClass = "bg-my_gray drop-shadow-xl";
+                                    else if (isNext) {
+                                        bgClass = "bg-my_gradient_opp"
+                                        overlay_gradient = "bg-gradient-to-r from-transparent to-white"
+                                    }
+                                    else bgClass = "bg-white";
+
+                                    const flipClass = 
+                                    flippedIndex === i && swipeDirection ==="left" ? "left-flip" 
+                                    : flippedIndex === i && swipeDirection ==="right" ? "right-flip"
+                                    :""
+
+                                    return (
+                                        <>
+                                        <div className={`flex h-full rounded-xl ${!isActive && "scale-75"} items-center justify-center text-black overflow-hidden`}>
+                                            {/* Gradient Overlay */}
+                                            <div className={`absolute inset-0 ${overlay_gradient}`}></div>
+                                            <div className={`slide ${flipClass} flex-col h-full w-full justify-around`}>
+
+                                                <div className={`flex ${bgClass} h-full w-full justify-center items-center front-slide`}>
+                                                    <div className='flex h-[40%] justify-center rounded-xl overflow-hidden m-3'>
+                                                        <img className={`w-fit object-cover transition-all delay-300`} src={projects_images[i+1]}></img>
+                                                    </div>
+                                                </div>
+
+                                                <div className={`flex ${bgClass} h-full w-full flex-col back-slide`}>
+                                                    <div className='flex h-[30%] justify-center rounded-xl overflow-hidden m-3'>
+                                                        <img className={`object-contain transition-all delay-300`} src={projects_images[i+1]}></img>
+                                                    </div>
+                                                    
+                                                    <div className='flex flex-col h-[30%] mx-4 mb-3 rounded-xl max-md:m-2'>
+                                                        <p className='font-mono font-semibold'>Description</p>
+                                                        <p className={`text-wrap font-mono text-justify max-md:text-[12px]`}>
+                                                            {projects_desc[i+1]}
+                                                        </p>
+                                                    </div>
+                                                    
+                                                    <div className='flex flex-col h-[30%] mx-4 mb-5'>
+                                                        <p className='font-mono font-semibold'>Features</p>
+                                                        <div className='mt-2 pb-2'>
+                                                            <Swiper
+                                                                direction={'horizontal'}
+                                                                slidesPerView={4}
+                                                                freeMode={true}
+                                                                mousewheel={true}
+                                                                scrollbar= {true}
+                                                                modules={[FreeMode, Scrollbar, Mousewheel]}
+                                                                //className='overflow-y-visible scrollbar-track-black scrollbar-thumb-white'
+                                                                >
+                                                                {projects_feature_logos[i+1].map((e,i)=>
+                                                                    <SwiperSlide><img key={i} className="h-14 object-cover overflow-hidden max-md:h-10" src={getLogo(e)} /></SwiperSlide>
+                                                                )}
+                                                            </Swiper>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div className={`absolute inset-x-0 bottom-0 h-[100%] z-[1000] translate-y-[90%] transition-all ease-in-out duration-300 hover:translate-y-0`}>
+                                                        
+                                                        <div className="flex absolute inset-x-0 top-0 h-[10%] bg-my_gradient_reversed rounded-t-xl drop-shadow-xl justify-center">
+                                                            <button><i className='bi bi-arrow-bar-up fs-2'></i></button>
+                                                        </div>
+                                                        
+                                                        <div className='flex absolute inset-x-0 bottom-0 h-[90%] bg-[#c0bfbf] opacity-90' 
+                                                            onMouseEnter={()=>setAriplaneAnimation(true)}
+                                                            onMouseLeave={()=>setAriplaneAnimation(false)}>
+                                                            <a target='blank' href={`${projects_url[i+1]}`} className={`flex flex-col my-auto w-full no-underline cursor-pointer text-black place-items-center place-content-center hover:text-white`}
+                                                            >
+                                                                <p className='text-wrap text-[24px] font-mono font-bold w-[60%] text-center transition-all duration-500'>Dive into the project!</p> 
+
+                                                                <i className={`bi bi-airplane-engines-fill fs-1 rotate-45 -translate-x-[${ariplaneAnimation?"0":"100"}%] translate-y-[${ariplaneAnimation?"0":"20"}%] transition-all duration-500`}></i>
+                                                            </a>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </>
+                                    );
+                                }}
+                            </SwiperSlide>
+                            
+                        ))}
+                    </Swiper>
+                </div>
             </div>
         </div>
     );

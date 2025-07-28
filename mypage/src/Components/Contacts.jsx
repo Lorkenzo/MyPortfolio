@@ -6,8 +6,9 @@ import { Navigation, Pagination } from 'swiper/modules';
 
 function Contacts({refprop}){
     return(
-        <div className="w-screen h-screen" ref={refprop}>
-            
+        <div className="flex w-full h-screen items-end" ref={refprop}>
+            <div className="flex flex-col w-full h-[calc(100%-64px)]">
+            </div>
         </div>
     )
 }

@@ -36,15 +36,17 @@ function App() {
     }, [window.innerWidth]);
 
     return (
-        <div className="overflow-x-hidden">
-        <Navbar isMobile={isMobile} scrollToSection={scrollToSection}></Navbar>
+      <div className="flex w-full justify-end">
         <Header></Header>
-        <Home isMobile={isMobile}></Home>
-        <AboutMe isMobile={isMobile} refprop={section1Ref}></AboutMe>
-        <Skills refprop={section2Ref}></Skills>
-        <Projects isMobile={isMobile} refprop={section3Ref}></Projects>
-        <Contacts refprop={section4Ref}></Contacts>
-        </div>
+        <div className="flex flex-col w-[calc(100%-64px)]">
+          <Navbar isMobile={isMobile} scrollToSection={scrollToSection}></Navbar>
+          <Home isMobile={isMobile}></Home>
+          <AboutMe isMobile={isMobile} refprop={section1Ref}></AboutMe>
+          <Skills refprop={section2Ref}></Skills>
+          <Projects isMobile={isMobile} refprop={section3Ref}></Projects>
+          <Contacts refprop={section4Ref}></Contacts>
+        </div> 
+      </div>
     );
 }
 

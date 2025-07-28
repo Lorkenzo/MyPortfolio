@@ -12,15 +12,15 @@ function Home({isMobile}){
         const handleScroll = () => {
         if (imgRef.current) {
             const imgTop = imgRef.current.getBoundingClientRect().top; // Distanza dal top
-            setIsFixed(imgTop <= 0 && isMobile?imgSize.get()===30:imgSize.get()===50); // Se l'immagine raggiunge il top, diventa fissa
+            setIsFixed(imgSize.get()===50); // Se l'immagine raggiunge il top, diventa fissa
         }
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, [isMobile]);
+    }, []);
 
     // Trasform image size and position
-    const imgSize = useTransform(scrollY, isMobile?[0,200]:[0, 200], isMobile?[150,30]: [250, 50]); // scroll 0 -> 350px , scroll 200 -> 50px
+    const imgSize = useTransform(scrollY, [0, 250], [250, 50]); // scroll 0 -> 350px , scroll 200 -> 50px
     //const imgY = useTransform(scrollY, isMobile?[0,250]:[0, 100], isMobile?[0,25]:[0, 0]); // 
 
     // Trasform image position and opacity
@@ -31,45 +31,47 @@ function Home({isMobile}){
     const textSize2 = useTransform(scrollY, isMobile?[0,200]:[0, 200], isMobile?["8px","4px"]:["12px", "6px"]); 
 
     return (
-            <div className="flex flex-col w-screen h-screen justify-around">
-            <div className={`flex flex-col basis-3/4 place-content-center`}>
-                <motion.img
-                ref={imgRef}
-                src={MyLogo}
-                alt="leafless-logo"
-                className={`mx-auto ${isFixed ? "fixed top-0 w-screen" : ""}`}
-                style={{
-                    zIndex:1000,
-                    //y: isFixed ? 0 : imgY,
-                    width: imgSize,
-                    height: imgSize,
-                }}
-                />
-                <motion.p
-                    className="font-light italic mx-auto"
-                    style={{ y: textY, opacity: textOpacity, fontSize: textSize1}}
-                >
-                    “Every great idea starts as a branch<br />
-                </motion.p>
-                <motion.p
-                    className="font-light italic mx-auto"
-                    style={{ y: textY, opacity: textOpacity, fontSize: textSize1}}
-                >
-                    Choose your path, create your branch, and let innovation grow"
-                </motion.p>
-                <motion.p
-                    className="font-light italic mx-auto"
-                    style={{ y: textY, opacity: textOpacity, fontSize: textSize2 }}
-                >
-                    ~ ChatGPT
-                </motion.p>
-                
+        <div className="flex w-full h-screen items-end">
+            <div className="flex flex-col w-full h-[calc(100%-64px)] items-center">
+                <div className={`flex flex-col w-full h-4/5 items-center justify-center`}>
+                    <div className={`flex z-[1000] ${isFixed && "fixed top-0 my-1"}`}>
+                    <motion.img
+                        ref={imgRef}
+                        src={MyLogo}
+                        alt="leafless-logo"
+                        style={{
+                            width:imgSize,
+                            height:imgSize
+                        }}
+                        />
+                    </div>
+                    <motion.p
+                        className="font-light italic mx-auto"
+                        style={{ y: textY, opacity: textOpacity, fontSize: textSize1}}
+                    >
+                        “Every great idea starts as a branch<br />
+                    </motion.p>
+                    <motion.p
+                        className="font-light italic mx-auto"
+                        style={{ y: textY, opacity: textOpacity, fontSize: textSize1}}
+                    >
+                        Choose your path, create your branch, and let innovation grow"
+                    </motion.p>
+                    <motion.p
+                        className="font-light italic mx-auto"
+                        style={{ y: textY, opacity: textOpacity, fontSize: textSize2 }}
+                    >
+                        ~ ChatGPT
+                    </motion.p>
+                    
+                </div>
+                <div className="flex flex-row gap-3 justify-center w-full h-1/5">
+                    <div className="flex items-center">
+                        <p className="italic font-extralight text-[20px] animate-bounce"><i className="bi bi-arrow-down-circle-fill fs-2 align-middle"></i> Scroll to learn more about me</p>
+                    </div>
+                </div>
             </div>
-            <div className="basis-1/4 content-center">
-            <i className="flex justify-center bi bi-arrow-down-circle-fill fs-2 animate-bounce"></i>
-            <p className="flex justify-center italic font-extralight text-[20px] animate-bounce"> Scroll to learn more about me</p>
-            </div>
-            </div>
+        </div>
     );
 }
 
