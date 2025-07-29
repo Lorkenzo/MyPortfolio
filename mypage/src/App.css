@@ -20,14 +20,6 @@ body {
     height: 90% !important;
 }
 
-.swiper-button-prev{
-    color: var(--my-gray) !important;
-}
-
-.swiper-button-next{
-    color: var(--my-gray) !important;
-}
-
 .swiper-button-prev::after,
 .swiper-button-next::after {
   display: none;

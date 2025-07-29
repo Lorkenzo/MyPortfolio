@@ -9,30 +9,24 @@ function Navbar({isMobile,scrollToSection}){
         "folder-fill":"Projects",
         "envelope-fill":"Contacts"
     }
-    const [isHovered, setIsHovered] = useState("")
 
     return(
-        <div className="fixed top-[40px] left-0 h-100 w-1/12 content-center justify-items-center  z-[1000] ">
-            <div className="flex flex-col w-[35%] h-2/3 rounded-full bg-my_gradient justify-content-around max-md:w-[60%] drop-shadow-sm">
+        <div className="flex fixed h-full w-40 md:-translate-x-20 max-md:translate-y-20 items-center justify-center z-[1000] left-0 max-md:bottom-0 max-md:h-40 max-md:w-full">
+            <div className="flex flex-col w-40 h-3/4 rounded-full bg-my_gradient justify-around max-md:flex-row max-md:w-full">
+                <div className="flex flex-col w-fit justify-around h-3/4 overflow-hidden md:translate-x-32 max-md:flex-row max-md:-translate-y-4 max-md:w-3/4">
                 {
                     button_icons.map((button_name)=>
-                        {
-                        return button_name !== isHovered?
-                        <div  onMouseEnter={()=>setIsHovered(button_name)} onMouseLeave={()=>setIsHovered("")} className="mx-[50%] w-[100%] h-[9.090909%] rounded-full bg-white content-center justify-items-center">
-                            <div className="flex w-[90%] h-[90%] rounded-full bg-my_gradient_reversed justify-center">
-                                <i className={`bi bi-${button_name} ${isMobile?"fs-5":"fs-4"}`}></i>
+                        <div className="flex relative w-12 h-12 rounded-full bg-white items-center justify-center overflow-hidden group hover:w-36 transition-all duration-300">
+                            <div 
+                            onClick={()=>scrollToSection(button_text[button_name])} 
+                            className="flex flex-row gap-3 absolute inset-1 p-2 items-center rounded-full bg-my_gradient_reversed cursor-pointer group">
+                                <i className={`bi bi-${button_name} fs-4`}></i> 
+                                <span className="font-semibold hidden text-nowrap opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:inline">{button_text[button_name]}</span>
                             </div>
-                        </div>:
-                        <div onMouseEnter={()=>setIsHovered(button_name)} onMouseLeave={()=>setIsHovered("")} className="mx-[50%] w-[300%] h-[9.090909%] rounded-full bg-white content-center justify-items-center max-md:w-[200%]">
-                        <button className={`flex w-[90%] h-[90%] rounded-full bg-my_gradient_reversed mx-auto justify-center content-center`} onClick={()=>scrollToSection(button_text[button_name])}>
-                            <i className={`bi bi-${button_name} ${isMobile?"fs-5":"fs-4 ml-auto"}`}></i>
-                            {!isMobile &&<p className="my-auto mx-auto">{button_text[button_name]}</p>}
-                        </button>
                         </div>
-                        }
                     )
                 }
-                
+                </div>
             </div>
         </div>
     )

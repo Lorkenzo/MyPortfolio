@@ -57,8 +57,8 @@ function Projects({isMobile, refprop }) {
     }
 
     return (
-        <div className="flex w-full h-screen items-end" ref={refprop}>
-            <div className="flex flex-col w-full h-[calc(100%-64px)] place-content-center">
+        <div className="flex w-full h-screen items-end max-md:items-center" ref={refprop}>
+            <div className="flex flex-col w-full h-[calc(100%-64px)] place-content-center max-md:h-[calc(100%-128px)]">
                 <div className="flex w-full h-[15%] justify-center items-center">
                     <p className={`text-[32px] font-semibold font-mono`}>My Projects</p>
                 </div>
@@ -111,18 +111,21 @@ function Projects({isMobile, refprop }) {
 
                                     return (
                                         <>
-                                        <div className={`flex h-full rounded-xl ${!isActive && "scale-75"} items-center justify-center text-black overflow-hidden`}>
+                                        <div className={`flex h-full rounded-xl ${!isActive? "scale-75": "drop-shadow-lg"} items-center justify-center text-black overflow-hidden`}>
                                             {/* Gradient Overlay */}
-                                            <div className={`absolute inset-0 ${overlay_gradient}`}></div>
                                             <div className={`slide ${flipClass} flex-col h-full w-full justify-around`}>
 
                                                 <div className={`flex ${bgClass} h-full w-full justify-center items-center front-slide`}>
+                                                <div className={`absolute inset-0 ${overlay_gradient}`}></div>
+
                                                     <div className='flex h-[40%] justify-center rounded-xl overflow-hidden m-3'>
-                                                        <img className={`w-fit object-cover transition-all delay-300`} src={projects_images[i+1]}></img>
+                                                        <img className={`w-fit object-contain transition-all delay-300`} src={projects_images[i+1]}></img>
                                                     </div>
                                                 </div>
 
                                                 <div className={`flex ${bgClass} h-full w-full flex-col back-slide`}>
+                                                <div className={`absolute inset-0 ${overlay_gradient}`}></div>
+
                                                     <div className='flex h-[30%] justify-center rounded-xl overflow-hidden m-3'>
                                                         <img className={`object-contain transition-all delay-300`} src={projects_images[i+1]}></img>
                                                     </div>

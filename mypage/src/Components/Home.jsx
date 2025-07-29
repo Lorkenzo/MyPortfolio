@@ -66,7 +66,7 @@ function Home({isMobile}){
                     
                 </div>
                 <div className="flex flex-row gap-3 justify-center w-full h-1/5">
-                    <div className="flex items-center">
+                    <div className="flex items-start">
                         <p className="italic font-extralight text-[20px] animate-bounce"><i className="bi bi-arrow-down-circle-fill fs-2 align-middle"></i> Scroll to learn more about me</p>
                     </div>
                 </div>

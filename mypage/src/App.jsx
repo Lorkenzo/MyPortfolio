@@ -38,7 +38,7 @@ function App() {
     return (
       <div className="flex w-full justify-end">
         <Header></Header>
-        <div className="flex flex-col w-[calc(100%-64px)]">
+        <div className="flex flex-col w-[calc(100%-64px)] max-md:w-full">
           <Navbar isMobile={isMobile} scrollToSection={scrollToSection}></Navbar>
           <Home isMobile={isMobile}></Home>
           <AboutMe isMobile={isMobile} refprop={section1Ref}></AboutMe>

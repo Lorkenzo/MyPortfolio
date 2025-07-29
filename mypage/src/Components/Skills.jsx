@@ -23,8 +23,8 @@ function Skills({refprop}){
     }
 
     return(
-        <div className="flex w-full h-screen items-end" ref={refprop}>
-            <div className="flex flex-col w-full h-[calc(100%-64px)]">
+        <div className="flex w-full h-screen items-end max-md:items-center" ref={refprop}>
+            <div className="flex flex-col w-full h-[calc(100%-64px)] max-md:h-[calc(100%-128px)]">
                 <div className="flex w-full h-[15%] justify-center items-center">
                     <p className={`text-[32px] font-semibold font-mono`}>My Skills</p>
                 </div>
