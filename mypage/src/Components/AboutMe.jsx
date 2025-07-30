@@ -30,14 +30,14 @@ function AboutMe({isMobile, refprop}){
                                 </div>
                                 <div className="flex flex-row gap-4">
                                 <i className={`bi bi-people ${isMobile?"fs-5":"fs-3"}`}></i>
-                                <div className="font-mono text-justify content-center">Let’s connect and build something amazing together!</div>
+                                <div className="font-mono text-justify content-center">Let’s <a className="font-bold text-black hover:text-white" href="#contacts">connect</a> and build something amazing together!</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="flex w-1/3 h-full items-center justify-center max-md:h-2/6 max-md:w-full">
-                    <div className={`flex h-2/5 rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md max-md:h-2/3`}>
+                    <div className={`flex h-2/5 rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md max-md:h-3/4`}>
                         <img className="h-full w-full object-cover grayscale" src={myPhoto} alt="My Photo" />
                     </div>
                 </div>

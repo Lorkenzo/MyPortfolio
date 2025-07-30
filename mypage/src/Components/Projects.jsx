@@ -58,7 +58,7 @@ function Projects({isMobile, refprop }) {
 
     return (
         <div className="flex w-full h-screen items-end max-md:items-center" ref={refprop}>
-            <div className="flex flex-col w-full h-[calc(100%-64px)] place-content-center max-md:h-[calc(100%-128px)]">
+            <div className="flex flex-col w-full h-[calc(100%-64px)] max-md:h-[calc(100%-128px)]">
                 <div className="flex w-full h-[15%] justify-center items-center">
                     <p className={`text-[32px] font-semibold font-mono`}>My Projects</p>
                 </div>
@@ -150,13 +150,13 @@ function Projects({isMobile, refprop }) {
                                                                 //className='overflow-y-visible scrollbar-track-black scrollbar-thumb-white'
                                                                 >
                                                                 {projects_feature_logos[i+1].map((e,i)=>
-                                                                    <SwiperSlide><img key={i} className="h-14 object-cover overflow-hidden max-md:h-10" src={getLogo(e)} /></SwiperSlide>
+                                                                    <SwiperSlide key={i}><img className="h-14 object-cover overflow-hidden max-md:h-10" src={getLogo(e)} /></SwiperSlide>
                                                                 )}
                                                             </Swiper>
                                                         </div>
                                                     </div>
                                                     
-                                                    <div className={`absolute inset-x-0 bottom-0 h-[100%] z-[1000] translate-y-[90%] transition-all ease-in-out duration-300 hover:translate-y-0`}>
+                                                    <div className={`absolute inset-x-0 bottom-0 h-[100%] z-[1000] translate-y-[90%] transition-all ease-in-out duration-500 hover:translate-y-0`}>
                                                         
                                                         <div className="flex absolute inset-x-0 top-0 h-[10%] bg-my_gradient_reversed rounded-t-xl drop-shadow-xl justify-center">
                                                             <button><i className='bi bi-arrow-bar-up fs-2'></i></button>
