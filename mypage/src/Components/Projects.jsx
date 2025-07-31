@@ -10,6 +10,8 @@ import Project2 from "../assets/project2.webp"
 import Project3 from "../assets/project3.png"
 import Project4 from "../assets/project4.png"
 import Project5 from "../assets/project5.png"
+import Project6 from "../assets/my-name-logo.png"
+import Project7 from "../assets/project6.png"
 import getLogo from './Utilities/utilities';
 
 function Projects({isMobile, refprop }) {
@@ -17,13 +19,15 @@ function Projects({isMobile, refprop }) {
     const [swipeDirection, setSwipeDirection] = useState(null);
     const [ariplaneAnimation, setAriplaneAnimation] = useState(false)
 
-    const projects = [1, 2, 3, 4, 5];
+    const projects = [1, 2, 3, 4, 5, 6, 7];
     const projects_images = {
         1: Project1,
         2: Project2,
         3: Project3,
         4: Project4,
         5: Project5,
+        6: Project6,
+        7: Project7
     }
 
     const projects_desc = {
@@ -32,6 +36,8 @@ function Projects({isMobile, refprop }) {
         3: "A web application developed for the municipality of kiruna - team project",
         4: "A greedy algorithm to solve the N-Puzzle problem based on a layer solver",
         5: "A user-friendly local multiplatform screensharing application - team project",
+        6: "The code of my Portfolio",
+        7: "An intelligent tutoring system based on AI to create exercise for educators"
     }
 
     const projects_url = {
@@ -40,6 +46,8 @@ function Projects({isMobile, refprop }) {
         3: "https://github.com/pettykanon/02-Kiruna-Explorer",
         4: "https://github.com/Lorkenzo/N-Puzzle_LayerSolver",
         5: "https://github.com/marioleonardo/rust-screenshare",
+        6: "https://github.com/Lorkenzo/MyPortfolio",
+        7: "https://github.com/Lorkenzo/CAT-AI"
     }
 
     const Features1 = ["html5","css3","js","react","bootstrap","sqlite"]
@@ -47,6 +55,8 @@ function Projects({isMobile, refprop }) {
     const Features3 = ["html5","css3","js","react","tailwind","sqlite"]
     const Features4 =  ["python"]
     const Features5 = ["rust"]
+    const Features6 = ["html5","css3","js","react","tailwind"]
+    const Features7 = ["openai","html5","css3","js","react","tailwind"]
 
     const projects_feature_logos = {
         1: Features1,
@@ -54,6 +64,8 @@ function Projects({isMobile, refprop }) {
         3: Features3,
         4: Features4,
         5: Features5,
+        6: Features6,
+        7: Features7
     }
 
     return (
@@ -111,7 +123,7 @@ function Projects({isMobile, refprop }) {
 
                                     return (
                                         <>
-                                        <div className={`flex h-full rounded-xl ${!isActive? "scale-75": "drop-shadow-lg"} items-center justify-center text-black overflow-hidden`}>
+                                        <div className={`flex h-full rounded-xl ${!isActive? "scale-75": "drop-shadow-md"} items-center justify-center text-black overflow-hidden`}>
                                             {/* Gradient Overlay */}
                                             <div className={`slide ${flipClass} flex-col h-full w-full justify-around`}>
 

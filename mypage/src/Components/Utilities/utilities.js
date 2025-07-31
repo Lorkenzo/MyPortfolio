@@ -13,6 +13,7 @@ import AsmLogo from "../../assets/asm.png"
 import BootstrapLogo from "../../assets/bootstrap.png"
 import SqliteLogo from "../../assets/sqlite.png"
 import TailwindLogo from "../../assets/tailwind.png"
+import OpenAILogo from "../../assets/openai.png"
 
 export default function getLogo(skill){
     if (skill === "html5") return HtmlLogo
@@ -25,9 +26,10 @@ export default function getLogo(skill){
     else if (skill === "c") return CLogo
     else if (skill === "java") return JavaLogo
     else if (skill === "office") return OfficeLogo
-    else if (skill == "rust") return RustLogo
-    else if (skill == "asm") return AsmLogo
-    else if (skill == "bootstrap") return BootstrapLogo
-    else if (skill == "sqlite") return SqliteLogo
-    else if (skill == "tailwind") return TailwindLogo
+    else if (skill === "rust") return RustLogo
+    else if (skill === "asm") return AsmLogo
+    else if (skill === "bootstrap") return BootstrapLogo
+    else if (skill === "sqlite") return SqliteLogo
+    else if (skill === "tailwind") return TailwindLogo
+    else if (skill === "openai") return OpenAILogo
 }
