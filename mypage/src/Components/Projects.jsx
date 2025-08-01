@@ -5,68 +5,142 @@ import { Navigation, Pagination, FreeMode, Scrollbar, Mousewheel } from 'swiper/
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import Project1 from "../assets/project1.png"
-import Project2 from "../assets/project2.webp"
-import Project3 from "../assets/project3.png"
-import Project4 from "../assets/project4.png"
-import Project5 from "../assets/project5.png"
-import Project6 from "../assets/my-name-logo.png"
-import Project7 from "../assets/project6.png"
+import MemeGame from "../assets/project1.png"
+import Quoridor from "../assets/project2.webp"
+import KirunaExplorer from "../assets/project3.png"
+import NPuzzle from "../assets/project4.png"
+import RustScreenshare from "../assets/project5.png"
+import MyPortfolio from "../assets/my-name-logo.png"
+import CatAI from "../assets/project6.png"
 import getLogo from './Utilities/utilities';
 
 function Projects({isMobile, refprop }) {
     const [flippedIndex, setFlippedIndex] = useState(null);
     const [swipeDirection, setSwipeDirection] = useState(null);
     const [ariplaneAnimation, setAriplaneAnimation] = useState(false)
+    const [filterOpen, setFilterOpen] = useState(false)
+    const [selectedFilters, setSelectedFilters] = useState([])
 
-    const projects = [1, 2, 3, 4, 5, 6, 7];
-    const projects_images = {
-        1: Project1,
-        2: Project2,
-        3: Project3,
-        4: Project4,
-        5: Project5,
-        6: Project6,
-        7: Project7
+    const projects = [
+        {
+            id: 0,
+            img: MemeGame,
+            desc: "A responsive web application to play 'What do you meme?' game.",
+            keywords: ["webapp"],
+            languages: ["html5","css3","js","react","bootstrap","sqlite"],
+            url:'https://github.com/Lorkenzo/MemeGame',
+        },
+        {
+            id: 1,
+            img: Quoridor,
+            desc: "A single/multi player game developed for ARM based System-on-Chip boards.",
+            keywords: ["embedded system"],
+            languages: ["c"],
+            url:"https://github.com/Lorkenzo/ARM-Quoridor",
+        },
+        {
+            id: 2,
+            img: KirunaExplorer,
+            desc: "A web application developed for the municipality of kiruna",
+            keywords: ["webapp", "team project"],
+            languages: ["html5","css3","js","react","tailwind","sqlite"],
+            url:"https://github.com/pettykanon/02-Kiruna-Explorer",
+        },
+        {
+            id: 3,
+            img: NPuzzle,
+            desc: "A greedy algorithm to solve the N-Puzzle problem based on a layer solver",
+            keywords: ["optimization algorithm"],
+            languages: ["python"],
+            url:"https://github.com/Lorkenzo/N-Puzzle_LayerSolver",
+        },
+        {
+            id: 4,
+            img: RustScreenshare,
+            desc: "A user-friendly local multiplatform screensharing application",
+            keywords: ["team project"],
+            languages: ["rust"],
+            url: "https://github.com/marioleonardo/rust-screenshare",
+        },
+        {
+            id: 5,
+            img: MyPortfolio,
+            desc:  "The code of my Portfolio",
+            keywords: ["webapp"],
+            languages: ["html5","css3","js","react","tailwind"],
+            url:"https://github.com/Lorkenzo/MyPortfolio",
+        },
+        {
+            id: 6,
+            img: CatAI,
+            desc: "An intelligent tutoring system based on OpenAI API to create and design custom exercise for educators",
+            keywords: ["webapp","AI"],
+            languages: ["openai","html5","css3","js","react","tailwind"],
+            url: "https://github.com/Lorkenzo/CAT-AI"
+        },
+    ];
+
+    const keywords = {
+        "webapp": {
+            bg:"bg-sky-500",
+            text:"text-sky-500",
+            border: "border-sky-500",
+            hover: "hover:bg-sky-300",
+            selected: "bg-sky-500"
+        },
+        "team project": {
+            bg:"bg-purple-500",
+            text:"text-purple-500",
+            border: "border-purple-500",
+            hover: "hover:bg-purple-300",
+            selected: "bg-purple-500"
+        },
+        "optimization algorithm": {
+            bg:"bg-emerald-500",
+            text:"text-emerald-500",
+            border: "border-emerald-500",
+            hover: "hover:bg-emerald-300",
+            selected: "bg-emerald-500"
+        },
+        "embedded system":{
+            bg:"bg-orange-500",
+            text:"text-orange-500",
+            border: "border-orange-500",
+            hover: "hover:bg-orange-300",
+            selected: "bg-orange-500"
+        },
+        "AI":{
+            bg:"bg-pink-500",
+            text:"text-pink-500",
+            border: "border-pink-500",
+            hover: "hover:bg-pink-300",
+            selected: "bg-pink-500"
+        },
+        }
+
+    const handleFilterSelection = (filter) =>{
+        setSelectedFilters(prev => {
+            const present = prev.find(e => e === filter)
+            if (present) {
+                return prev.filter(e => e!==filter)
+            }
+            else {
+                return [...prev, filter]
+            }
+        })
     }
 
-    const projects_desc = {
-        1: "A responsive web application to play 'What do you meme?' game.",
-        2: "A single/multi player game developed for ARM based System-on-Chip boards.",
-        3: "A web application developed for the municipality of kiruna - team project",
-        4: "A greedy algorithm to solve the N-Puzzle problem based on a layer solver",
-        5: "A user-friendly local multiplatform screensharing application - team project",
-        6: "The code of my Portfolio",
-        7: "An intelligent tutoring system based on AI to create exercise for educators"
-    }
+    useEffect(()=>{
 
-    const projects_url = {
-        1: 'https://github.com/Lorkenzo/MemeGame',
-        2: "https://github.com/Lorkenzo/ARM-Quoridor",
-        3: "https://github.com/pettykanon/02-Kiruna-Explorer",
-        4: "https://github.com/Lorkenzo/N-Puzzle_LayerSolver",
-        5: "https://github.com/marioleonardo/rust-screenshare",
-        6: "https://github.com/Lorkenzo/MyPortfolio",
-        7: "https://github.com/Lorkenzo/CAT-AI"
-    }
+    },[selectedFilters])
 
-    const Features1 = ["html5","css3","js","react","bootstrap","sqlite"]
-    const Features2 = ["c"]
-    const Features3 = ["html5","css3","js","react","tailwind","sqlite"]
-    const Features4 =  ["python"]
-    const Features5 = ["rust"]
-    const Features6 = ["html5","css3","js","react","tailwind"]
-    const Features7 = ["openai","html5","css3","js","react","tailwind"]
+    const filteredProjects = projects.filter(project => {
+    // Se non ci sono filtri attivi, mostra tutto
+    if (selectedFilters.length === 0) return true;
 
-    const projects_feature_logos = {
-        1: Features1,
-        2: Features2,
-        3: Features3,
-        4: Features4,
-        5: Features5,
-        6: Features6,
-        7: Features7
-    }
+    // Almeno una keyword del progetto è tra i filtri selezionati
+    return project.keywords.some(keyword => selectedFilters.includes(keyword));
+    });
 
     return (
         <div className="flex w-full h-screen items-end max-md:items-center" ref={refprop}>
@@ -74,7 +148,22 @@ function Projects({isMobile, refprop }) {
                 <div className="flex w-full h-[15%] justify-center items-center">
                     <p className={`text-[32px] font-semibold font-mono`}>My Projects</p>
                 </div>
-
+                <div className='flex w-full justify-end'>
+                    <div className='flex flex-row gap-2 w-4/5'>
+                        <button onClick={()=>setFilterOpen(prev=>!prev)}><i className={`bi ${filterOpen?"bi-filter-left":"bi-filter"} fs-3 align-middle mr-2`}></i></button>
+                        <div className='flex flex-row gap-2 overflow-hidden transition-all duration-500'
+                        style={{width:filterOpen?"100%":0}}>
+                            {Object.keys(keywords).map((e,i)=>{
+                            const isSelected = Boolean(selectedFilters.find(f => f === e))
+                            
+                            return (<div onClick={()=>handleFilterSelection(e)} key={i} className={`flex cursor-pointer items-center ${isSelected? "text-white":keywords[e].text} text-nowrap font-bold rounded-full border-2 ${keywords[e].border} ${isSelected && keywords[e].selected} px-2 py-1 max-md:text-[12px] max-md:p-1 ${!isSelected && keywords[e].hover} hover:text-white`}>
+                                {e}
+                            </div>)
+                            }
+                        )}
+                        </div>
+                    </div>
+                </div>
                 <div className="flex w-full h-[85%] items-center">
                     <Swiper
                         spaceBetween={20}
@@ -88,7 +177,7 @@ function Projects({isMobile, refprop }) {
                             clickable: true
                         }}
                         modules={[Navigation, Pagination]}
-                        className="flex flex-row h-[90%] w-[90%] items-center pt-4"
+                        className="flex flex-row h-[90%] w-[90%] items-center pt-4 max-md:w-[100%]"
                         nested={true}
                         //cssMode={true}
                         onSlideChange={(swiper) => {
@@ -100,7 +189,7 @@ function Projects({isMobile, refprop }) {
                             setFlippedIndex(newIndex);
                         }}
                     >
-                        {projects.map((e, i) => (
+                        {filteredProjects && filteredProjects.map((e, i) => (
                             <SwiperSlide key={i}>
                                 {({ isPrev, isActive, isNext }) => {
                                     let bgClass = "";
@@ -122,8 +211,7 @@ function Projects({isMobile, refprop }) {
                                     :""
 
                                     return (
-                                        <>
-                                        <div className={`flex h-full rounded-xl ${!isActive? "scale-75": "drop-shadow-md"} items-center justify-center text-black overflow-hidden`}>
+                                        <div className={`flex h-full rounded-xl border-black ${!isActive? "scale-75": "drop-shadow-md"} items-center justify-center text-black overflow-hidden`}>
                                             {/* Gradient Overlay */}
                                             <div className={`slide ${flipClass} flex-col h-full w-full justify-around`}>
 
@@ -131,66 +219,81 @@ function Projects({isMobile, refprop }) {
                                                 <div className={`absolute inset-0 ${overlay_gradient}`}></div>
 
                                                     <div className='flex h-[40%] justify-center rounded-xl overflow-hidden m-3'>
-                                                        <img className={`w-fit object-contain transition-all delay-300`} src={projects_images[i+1]}></img>
+                                                        <img className={`w-fit object-contain transition-all delay-300`} src={e.img}></img>
                                                     </div>
                                                 </div>
 
-                                                <div className={`flex ${bgClass} h-full w-full flex-col back-slide`}>
+                                                <div className={`flex ${bgClass} h-full w-full flex-col gap-1 back-slide overflow-auto`}>
                                                 <div className={`absolute inset-0 ${overlay_gradient}`}></div>
 
-                                                    <div className='flex h-[30%] justify-center rounded-xl overflow-hidden m-3'>
-                                                        <img className={`object-contain transition-all delay-300`} src={projects_images[i+1]}></img>
+                                                    <div className='flex justify-center rounded-xl pt-3'>
+                                                        <img className={`object-contain max-h-32 max-w-36 max-md:max-h-28`} src={e.img}></img>
+                                                    </div>
+
+                                                <div className='overflow-auto scrollbar-thin p-3'>
+                                                    <div className='flex flex-wrap items-center w-full gap-2 py-3'>
+                                                        {e.keywords.map((e,i)=><div key={i} className={`flex items-center text-white text-nowrap font-bold rounded-full ${keywords[e].bg} px-2 py-1 max-md:text-[12px] max-md:p-1`}>{e}</div>)}
                                                     </div>
                                                     
-                                                    <div className='flex flex-col h-[30%] mx-4 mb-3 rounded-xl max-md:m-2'>
-                                                        <p className='font-mono font-semibold'>Description</p>
-                                                        <p className={`text-wrap font-mono text-justify max-md:text-[12px]`}>
-                                                            {projects_desc[i+1]}
+                                                    <div className='flex flex-col rounded-xl max-md:m-2'>
+                                                        
+                                                        <p className={`text-wrap font-mono max-md:text-[12px]`}>
+                                                            {e.desc}
                                                         </p>
                                                     </div>
                                                     
-                                                    <div className='flex flex-col h-[30%] mx-4 mb-5'>
-                                                        <p className='font-mono font-semibold'>Features</p>
-                                                        <div className='mt-2 pb-2'>
-                                                            <Swiper
-                                                                direction={'horizontal'}
-                                                                slidesPerView={4}
-                                                                freeMode={true}
-                                                                mousewheel={true}
-                                                                scrollbar= {true}
-                                                                modules={[FreeMode, Scrollbar, Mousewheel]}
-                                                                //className='overflow-y-visible scrollbar-track-black scrollbar-thumb-white'
-                                                                >
-                                                                {projects_feature_logos[i+1].map((e,i)=>
-                                                                    <SwiperSlide key={i}><img className="h-14 object-cover overflow-hidden max-md:h-10" src={getLogo(e)} /></SwiperSlide>
-                                                                )}
-                                                            </Swiper>
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    <div className={`absolute inset-x-0 bottom-0 h-[100%] z-[1000] translate-y-[90%] transition-all ease-in-out duration-500 hover:translate-y-0`}>
-                                                        
-                                                        <div className="flex absolute inset-x-0 top-0 h-[10%] bg-my_gradient_reversed rounded-t-xl drop-shadow-xl justify-center">
-                                                            <button><i className='bi bi-arrow-bar-up fs-2'></i></button>
-                                                        </div>
-                                                        
-                                                        <div className='flex absolute inset-x-0 bottom-0 h-[90%] bg-[#c0bfbf] opacity-90' 
-                                                            onMouseEnter={()=>setAriplaneAnimation(true)}
-                                                            onMouseLeave={()=>setAriplaneAnimation(false)}>
-                                                            <a target='blank' href={`${projects_url[i+1]}`} className={`flex flex-col my-auto w-full no-underline cursor-pointer text-black place-items-center place-content-center hover:text-white`}
+                                                    <div>   
+                                                        <Swiper
+                                                            direction={'horizontal'}
+                                                            slidesPerView={4}
+                                                            freeMode={true}
+                                                            mousewheel={true}
+                                                            scrollbar= {true}
+                                                            modules={[FreeMode, Scrollbar, Mousewheel]}
                                                             >
-                                                                <p className='text-wrap text-[24px] font-mono font-bold w-[60%] text-center transition-all duration-500'>Dive into the project!</p> 
-
-                                                                <i className={`bi bi-airplane-engines-fill fs-1 rotate-45 -translate-x-[${ariplaneAnimation?"0":"100"}%] translate-y-[${ariplaneAnimation?"0":"20"}%] transition-all duration-500`}></i>
-                                                            </a>
-                                                        </div>
-                                                        
+                                                            {projects[i].languages.map((e,i)=>
+                                                                <SwiperSlide key={i}><img className="h-14 object-cover overflow-hidden max-md:h-10" src={getLogo(e)} /></SwiperSlide>
+                                                            )}
+                                                        </Swiper>  
                                                     </div>
-                                                    
-                                                </div>
+
+                                                    <div className={`flex absolute inset-x-0 top-0 h-0 w-full z-10 transition-all duration-500 ease-in-out hover:h-3/4`}
+                                                            onMouseEnter={() => setAriplaneAnimation(true)}
+                                                            onMouseLeave={() => setAriplaneAnimation(false)}>
+                                                        {/* Bookmark */}
+                                                        <div className="flex absolute bottom-0 right-5 z-20 translate-y-10 max-md:translate-y-7">
+                                                            <div className={`cursor-pointer animate-wiggle`}>
+                                                            <i className="bi bi-bookmark-fill fs-1"></i>
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="absolute overflow-hidden border-b-4 border-black rounded-b-xl flex h-full w-full bg-[#c0bfbf] opacity-90">
+                                                        <a
+                                                            target="blank"
+                                                            href={projects[i].url}
+                                                            className="flex flex-col my-auto w-full no-underline cursor-pointer text-black place-items-center place-content-center hover:text-white"
+                                                        >
+                                                            <p className={`text-wrap text-[24px] font-mono font-bold w-[60%] text-center transition-all duration-500 
+                                                            ${ariplaneAnimation
+                                                                ? "opacity-100"
+                                                                : "opacity-0"}`}>
+                                                            Dive into the project!
+                                                            </p>
+
+                                                            <i
+                                                            className={`bi bi-airplane-engines-fill fs-1 rotate-45 transition-all duration-500 animate-rotate-x ${
+                                                                ariplaneAnimation
+                                                                ? ""
+                                                                : ""
+                                                            }`}
+                                                            ></i>
+                                                        </a>
+                                                        </div>
+                                                    </div>
+                                                </div>    
                                             </div>
                                         </div>
-                                        </>
+                                    </div>
                                     );
                                 }}
                             </SwiperSlide>

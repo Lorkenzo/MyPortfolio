@@ -131,7 +131,7 @@ function Skills({refprop}){
                                 transition: "opacity 0.5s ease, height 0.8s ease"
                                 }}
                         >
-                            <div className="flex flex-col gap-2 h-full bg-white p-4 rounded-md shadow overflow-auto">
+                            <div className="flex flex-col gap-2 h-full bg-white p-4 rounded-md shadow overflow-auto scrollbar-thin">
                                 <div className="font-bold text-lg">{hardskillsTitle[selectedSkill]}</div>
                                 <div>{hardskillsDesc[selectedSkill]}</div>
                             </div>
