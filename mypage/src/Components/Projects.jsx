@@ -1,18 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { motion } from "framer-motion";
+import { motion, transform } from "framer-motion";
 import { Navigation, Pagination, FreeMode, Scrollbar, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import MemeGame from "../assets/project1.png"
-import Quoridor from "../assets/project2.webp"
-import KirunaExplorer from "../assets/project3.png"
-import NPuzzle from "../assets/project4.png"
-import RustScreenshare from "../assets/project5.png"
-import MyPortfolio from "../assets/my-name-logo.png"
-import CatAI from "../assets/project6.png"
 import getLogo from './Utilities/utilities';
+import { projects,keywords } from './Utilities/utilities';
 
 function Projects({isMobile, refprop }) {
     const [flippedIndex, setFlippedIndex] = useState(null);
@@ -21,104 +15,9 @@ function Projects({isMobile, refprop }) {
     const [filterOpen, setFilterOpen] = useState(false)
     const [selectedFilters, setSelectedFilters] = useState([])
 
-    const projects = [
-        {
-            id: 0,
-            img: MemeGame,
-            desc: "A responsive web application to play 'What do you meme?' game.",
-            keywords: ["webapp"],
-            languages: ["html5","css3","js","react","bootstrap","sqlite"],
-            url:'https://github.com/Lorkenzo/MemeGame',
-        },
-        {
-            id: 1,
-            img: Quoridor,
-            desc: "A single/multi player game developed for ARM based System-on-Chip boards.",
-            keywords: ["embedded system"],
-            languages: ["c"],
-            url:"https://github.com/Lorkenzo/ARM-Quoridor",
-        },
-        {
-            id: 2,
-            img: KirunaExplorer,
-            desc: "A web application developed for the municipality of kiruna",
-            keywords: ["webapp", "team project"],
-            languages: ["html5","css3","js","react","tailwind","sqlite"],
-            url:"https://github.com/pettykanon/02-Kiruna-Explorer",
-        },
-        {
-            id: 3,
-            img: NPuzzle,
-            desc: "A greedy algorithm to solve the N-Puzzle problem based on a layer solver",
-            keywords: ["optimization algorithm"],
-            languages: ["python"],
-            url:"https://github.com/Lorkenzo/N-Puzzle_LayerSolver",
-        },
-        {
-            id: 4,
-            img: RustScreenshare,
-            desc: "A user-friendly local multiplatform screensharing application",
-            keywords: ["team project"],
-            languages: ["rust"],
-            url: "https://github.com/marioleonardo/rust-screenshare",
-        },
-        {
-            id: 5,
-            img: MyPortfolio,
-            desc:  "The code of my Portfolio",
-            keywords: ["webapp"],
-            languages: ["html5","css3","js","react","tailwind"],
-            url:"https://github.com/Lorkenzo/MyPortfolio",
-        },
-        {
-            id: 6,
-            img: CatAI,
-            desc: "An intelligent tutoring system based on OpenAI API to create and design custom exercise for educators",
-            keywords: ["webapp","AI"],
-            languages: ["openai","html5","css3","js","react","tailwind"],
-            url: "https://github.com/Lorkenzo/CAT-AI"
-        },
-    ];
-
-    const keywords = {
-        "webapp": {
-            bg:"bg-sky-500",
-            text:"text-sky-500",
-            border: "border-sky-500",
-            hover: "hover:bg-sky-300",
-            selected: "bg-sky-500"
-        },
-        "team project": {
-            bg:"bg-purple-500",
-            text:"text-purple-500",
-            border: "border-purple-500",
-            hover: "hover:bg-purple-300",
-            selected: "bg-purple-500"
-        },
-        "optimization algorithm": {
-            bg:"bg-emerald-500",
-            text:"text-emerald-500",
-            border: "border-emerald-500",
-            hover: "hover:bg-emerald-300",
-            selected: "bg-emerald-500"
-        },
-        "embedded system":{
-            bg:"bg-orange-500",
-            text:"text-orange-500",
-            border: "border-orange-500",
-            hover: "hover:bg-orange-300",
-            selected: "bg-orange-500"
-        },
-        "AI":{
-            bg:"bg-pink-500",
-            text:"text-pink-500",
-            border: "border-pink-500",
-            hover: "hover:bg-pink-300",
-            selected: "bg-pink-500"
-        },
-        }
-
     const handleFilterSelection = (filter) =>{
+        setFlippedIndex(0)
+        setSwipeDirection(null)
         setSelectedFilters(prev => {
             const present = prev.find(e => e === filter)
             if (present) {
@@ -130,15 +29,10 @@ function Projects({isMobile, refprop }) {
         })
     }
 
-    useEffect(()=>{
-
-    },[selectedFilters])
-
     const filteredProjects = projects.filter(project => {
-    // Se non ci sono filtri attivi, mostra tutto
+    
     if (selectedFilters.length === 0) return true;
 
-    // Almeno una keyword del progetto è tra i filtri selezionati
     return project.keywords.some(keyword => selectedFilters.includes(keyword));
     });
 
@@ -149,26 +43,57 @@ function Projects({isMobile, refprop }) {
                     <p className={`text-[32px] font-semibold font-mono`}>My Projects</p>
                 </div>
                 <div className='flex w-full justify-end'>
-                    <div className='flex flex-row gap-2 w-4/5'>
-                        <button onClick={()=>setFilterOpen(prev=>!prev)}><i className={`bi ${filterOpen?"bi-filter-left":"bi-filter"} fs-3 align-middle mr-2`}></i></button>
-                        <div className='flex flex-row gap-2 overflow-hidden transition-all duration-500'
-                        style={{width:filterOpen?"100%":0}}>
-                            {Object.keys(keywords).map((e,i)=>{
-                            const isSelected = Boolean(selectedFilters.find(f => f === e))
-                            
-                            return (<div onClick={()=>handleFilterSelection(e)} key={i} className={`flex cursor-pointer items-center ${isSelected? "text-white":keywords[e].text} text-nowrap font-bold rounded-full border-2 ${keywords[e].border} ${isSelected && keywords[e].selected} px-2 py-1 max-md:text-[12px] max-md:p-1 ${!isSelected && keywords[e].hover} hover:text-white`}>
+                    <div className="flex gap-2 w-4/5 max-md:w-full max-md:px-4">
+                        <button className="flex rounded-full" onClick={() => setFilterOpen(prev => !prev)}>
+                            <i className={`bi ${filterOpen ? "bi-filter-left" : "bi-filter"} fs-3 align-middle mr-2`}></i>
+                        </button>
+
+                        {/* Filtri selezionati - sempre visibili */}
+                        <div className="flex flex-row items-center gap-2 max-md:flex-wrap">
+                            {Object.keys(keywords)
+                            .filter(e => selectedFilters.includes(e))
+                            .map((e, i) => (
+                                <div
+                                onClick={() => handleFilterSelection(e)}
+                                key={`selected-${i}`}
+                                className={`flex h-8 cursor-pointer items-center text-white text-nowrap font-bold rounded-full border-2 ${keywords[e].border} ${keywords[e].selected} px-2 max-md:text-[12px] max-md:p-1 hover:text-white`}
+                                >
+                                {e} <i className='bi bi-x fs-4 align-middle'></i>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Altri filtri - visibili solo se filterOpen === true */}
+                        <div
+                            className={`flex flex-row overflow-hidden items-center gap-2 transition-all duration-500 max-md:flex-wrap`}
+                        >
+                            {Object.keys(keywords)
+                            .filter(e => !selectedFilters.includes(e))
+                            .map((e, i, array) => (
+                                <div
+                                style={{
+                                    pointerEvents: filterOpen? "auto":"none",
+                                    opacity: filterOpen ? 1 : 0,
+                                    height: filterOpen? "32px": "0px",
+                                    transitionDelay: filterOpen?`${100*i+1}ms`:`${100*(array.length-i)}ms` 
+                                 } }
+                                onClick={() => handleFilterSelection(e)}
+                                key={`unselected-${i}`}
+                                className={`flex overflow-hidden transition-all duration-300 cursor-pointer items-center ${keywords[e].text} text-nowrap font-bold rounded-full border-2 ${keywords[e].border} ${keywords[e].hover} px-2 max-md:text-[12px] max-md:p-1 hover:text-white`}
+                                >
                                 {e}
-                            </div>)
-                            }
-                        )}
+                                </div>
+                            ))}
                         </div>
                     </div>
+
                 </div>
                 <div className="flex w-full h-[85%] items-center">
-                    <Swiper
+                    {filteredProjects && <Swiper
+                        key={filteredProjects.map(p => p.id || p.title).join("-")}
                         spaceBetween={20}
-                        slidesPerView={isMobile?2:3}
-                        loop={true}
+                        slidesPerView={ isMobile ? 2 : 3}
+                        loop={filteredProjects.length > (isMobile ? 2 : 3)}
                         centeredSlides={true}
                         navigation={true}
                         
@@ -179,18 +104,25 @@ function Projects({isMobile, refprop }) {
                         modules={[Navigation, Pagination]}
                         className="flex flex-row h-[90%] w-[90%] items-center pt-4 max-md:w-[100%]"
                         nested={true}
-                        //cssMode={true}
+                        onSwiper={(swiper) => {
+                            console.log(swiper.realIndex)
+                            setFlippedIndex(swiper.realIndex); 
+                        }}
                         onSlideChange={(swiper) => {
-                            const newIndex = swiper.realIndex;
-                            const direction = newIndex > flippedIndex || (newIndex === 0 && flippedIndex === projects.length - 1)
-                                ? 'left'
-                                : 'right';
+                            const index = swiper.realIndex
+
+                            const direction =
+                                index > flippedIndex ||
+                                (index === 0 && flippedIndex === filteredProjects.length - 1)
+                                ? "left"
+                                : "right";
+
                             setSwipeDirection(direction);
-                            setFlippedIndex(newIndex);
+                            setFlippedIndex(index);
                         }}
                     >
-                        {filteredProjects && filteredProjects.map((e, i) => (
-                            <SwiperSlide key={i}>
+                        {filteredProjects.map((e, i) => (
+                            <SwiperSlide key={e.id}>
                                 {({ isPrev, isActive, isNext }) => {
                                     let bgClass = "";
                                     let overlay_gradient = ""
@@ -206,10 +138,9 @@ function Projects({isMobile, refprop }) {
                                     else bgClass = "bg-white";
 
                                     const flipClass = 
-                                    flippedIndex === i && swipeDirection ==="left" ? "left-flip" 
-                                    : flippedIndex === i && swipeDirection ==="right" ? "right-flip"
-                                    :""
-
+                                    flippedIndex === i && (swipeDirection === "left" || swipeDirection === null) ? "left-flip" 
+                                    : flippedIndex === i && swipeDirection === "right" ? "right-flip"
+                                    :"";
                                     return (
                                         <div className={`flex h-full rounded-xl border-black ${!isActive? "scale-75": "drop-shadow-md"} items-center justify-center text-black overflow-hidden`}>
                                             {/* Gradient Overlay */}
@@ -232,7 +163,7 @@ function Projects({isMobile, refprop }) {
 
                                                 <div className='overflow-auto scrollbar-thin p-3'>
                                                     <div className='flex flex-wrap items-center w-full gap-2 py-3'>
-                                                        {e.keywords.map((e,i)=><div key={i} className={`flex items-center text-white text-nowrap font-bold rounded-full ${keywords[e].bg} px-2 py-1 max-md:text-[12px] max-md:p-1`}>{e}</div>)}
+                                                        {e.keywords.map((e,i)=><div key={i} className={`flex items-center text-white text-nowrap font-semibold rounded-full ${keywords[e].bg} px-2 py-1 max-md:text-[12px] max-md:p-1`}>{e}</div>)}
                                                     </div>
                                                     
                                                     <div className='flex flex-col rounded-xl max-md:m-2'>
@@ -299,7 +230,7 @@ function Projects({isMobile, refprop }) {
                             </SwiperSlide>
                             
                         ))}
-                    </Swiper>
+                    </Swiper>}
                 </div>
             </div>
         </div>

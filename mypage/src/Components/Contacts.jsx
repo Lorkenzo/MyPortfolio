@@ -60,7 +60,7 @@ function Contacts({refprop}){
                     <p className={`text-[32px] font-semibold font-mono`}>Contact Me</p>
                 </div>
                 <div className='flex flex-col gap-3 items-center justify-center w-full h-[85%] md:flex-row max-md:h-[80%]'>
-                    <div className='flex flex-col gap-3 h-full w-[40%] p-2 items-center justify-center max-md:h-1/4 max-md:w-[90%] max-md:justify-around max-md:flex-row'>
+                    <div className='flex flex-col gap-3 h-full w-[40%] p-2 items-center justify-center max-md:h-1/4 max-md:w-full max-md:justify-around max-md:flex-row'>
                          <div className={`h-1/2 rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md max-md:h-full`}>
                             <img className="h-full w-full object-contain grayscale" src={myPhoto} alt="My Photo" />
                         </div>
