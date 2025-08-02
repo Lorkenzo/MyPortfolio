@@ -63,8 +63,6 @@ function Contacts(){
                         </div>
                         <div className="flex flex-col max-md:justify-center">
                             <div ><i className="bi bi-envelope-fill fs-3 align-middle mr-2"></i>lorenzo.cuccu01@gmail.com</div>
-                            <div><i className="bi bi-telegram fs-3 align-middle mr-2"></i>Lore_QQ</div>
-                            <div><i className="bi bi-instagram fs-3 align-middle mr-2"></i>lorenzo.qq_</div>
                         </div>
                     </div>
                     <div className='flex flex-col w-[50%] max-md:w-[90%] max-md:items-center'>
