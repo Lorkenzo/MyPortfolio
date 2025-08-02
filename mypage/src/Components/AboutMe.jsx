@@ -2,12 +2,12 @@ import myPhoto from "../assets/my-photo.jpeg";
 
 function AboutMe({isMobile}){
     return(
-        <div className={`flex w-full h-screen items-end max-md:items-center`} id="About Me">
-            <div className="flex flex-col-reverse w-full justify-center h-[calc(100%-64px)] md:flex-row max-md:justify-end max-md:h-[calc(100%-128px)]">
-                <div className="flex w-2/3 h-full justify-center items-center max-md:w-full max-md:h-3/5">
+        <div className={`flex w-full items-end max-lg:items-center py-20`} id="About Me">
+            <div className="flex flex-col-reverse w-full justify-center md:flex-row max-md:justify-end">
+                <div className="flex w-2/3 justify-center items-center max-md:w-full">
 
-                    <div className="flex h-fit w-[75%] p-3 rounded-lg bg-my_gradient_reversed justify-center items-center backdrop-blur-md max-md:w-5/6">
-                        <div className="h-[90%] w-[80%]">
+                    <div className="flex h-fit py-4 w-[75%] rounded-lg bg-my_gradient_reversed justify-center items-center backdrop-blur-md max-md:w-full max-md:mx-2">
+                        <div className="w-[80%]">
                             <div className="flex flex-row text-[20px] font-mono">
                                 <p>
                                     Hi! My name is <span className="font-bold text-my_bg_reversed transition-colors duration-500">Lorenzo</span>.
@@ -53,8 +53,8 @@ function AboutMe({isMobile}){
                         </div>
                     </div>
                 </div>
-                <div className="flex w-1/3 h-full items-center justify-start max-md:h-2/6 max-md:w-full max-md:justify-center">
-                    <div className={`flex h-2/5 rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md max-md:h-3/4`}>
+                <div className="flex w-1/3 max-md:h-[150px] items-center justify-start max-md:w-full max-md:justify-center">
+                    <div className={`flex h-2/3 rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md max-md:h-full`}>
                         <img className="h-full w-full object-cover grayscale" src={myPhoto} alt="My Photo" />
                     </div>
                 </div>

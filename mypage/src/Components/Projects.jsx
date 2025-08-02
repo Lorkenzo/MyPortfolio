@@ -16,7 +16,7 @@ function Projects({isMobile }) {
 
     const handleFilterSelection = (filter) =>{
         setFlippedIndex(0)
-        setSwipeDirection(null)
+        setSwipeDirection("right")
         setSelectedFilters(prev => {
             const present = prev.find(e => e === filter)
             if (present) {
@@ -42,13 +42,14 @@ function Projects({isMobile }) {
                     <p className={`text-[32px] font-semibold font-mono`}>My Projects</p>
                 </div>
                 <div className='flex w-full justify-end'>
-                    <div className="flex gap-2 w-4/5 max-md:w-full max-md:px-4">
+                    <div className="flex flex-row gap-2 w-4/5 max-md:w-full max-md:px-4">
                         <button className="flex rounded-full" onClick={() => setFilterOpen(prev => !prev)}>
                             <i className={`bi ${filterOpen ? "bi-filter-left" : "bi-filter"} fs-3 align-middle mr-2`}></i>
                         </button>
 
                         {/* Filtri selezionati - sempre visibili */}
-                        <div className="flex flex-row items-center gap-2 max-md:flex-wrap">
+                        
+                        <div className="flex flex-wrap items-center gap-2 max-md:flex-wrap">
                             {Object.keys(keywords)
                             .filter(e => selectedFilters.includes(e))
                             .map((e, i) => (
@@ -59,10 +60,7 @@ function Projects({isMobile }) {
                                     {e} <i className='bi bi-x fs-4 align-middle'></i>
                                 </div>
                             ))}
-                        </div>
-
-                        {/* Altri filtri - visibili solo se filterOpen === true */}
-                        <div className={`flex flex-row overflow-hidden items-center gap-2 transition-all duration-500 max-md:flex-wrap`}>
+                    
                             {Object.keys(keywords)
                             .filter(e => !selectedFilters.includes(e))
                             .map((e, i, array) => (
@@ -80,9 +78,10 @@ function Projects({isMobile }) {
                                 </div>
                             ))}
                         </div>
+                        
                     </div>
                 </div>
-                <div className="flex w-full h-[500px] items-center">
+                <div className="flex w-full h-[550px] items-center">
                     {filteredProjects && 
                     <Swiper
                         key={filteredProjects.map(p => p.id || p.title).join("-")}
@@ -100,7 +99,6 @@ function Projects({isMobile }) {
                         className="flex flex-row h-[90%] w-[90%] items-center pt-4 max-md:w-[100%]"
                         nested={true}
                         onSwiper={(swiper) => {
-                            console.log(swiper.realIndex)
                             setFlippedIndex(swiper.realIndex); 
                         }}
                         onSlideChange={(swiper) => {
@@ -132,11 +130,11 @@ function Projects({isMobile }) {
                                     else bgClass = "bg-my_bg";
 
                                     const flipClass = 
-                                    flippedIndex === i && (swipeDirection === "left" || swipeDirection === null) ? "left-flip" 
+                                    flippedIndex === i && (swipeDirection === "left") ? "left-flip" 
                                     : flippedIndex === i && swipeDirection === "right" ? "right-flip"
                                     :"";
                                     return (
-                                        <div className={`flex h-full rounded-xl border-black ${!isActive? "scale-75": "drop-shadow-md"} items-center justify-center text-my_bg_reversed overflow-hidden`}>
+                                        <div className={`flex h-full rounded-xl border-black ${!isActive? "scale-75": "drop-shadow-md"} items-center text-my_bg_reversed overflow-hidden`}>
                                             
                                             <div className={`slide ${flipClass} flex-col h-full w-full justify-around`}>
 
@@ -147,7 +145,7 @@ function Projects({isMobile }) {
                                                     </div>
                                                 </div>
 
-                                                <div className={`flex ${bgClass} h-full w-full flex-col gap-1 back-slide overflow-auto`}>
+                                                <div className={`flex ${bgClass} justify-center h-full w-full flex-col gap-1 back-slide overflow-auto`}>
                                                     <div className={`absolute inset-0 ${overlay_gradient}`}></div>
 
                                                     <div className="relative flex justify-center items-center pt-3">    
@@ -155,7 +153,7 @@ function Projects({isMobile }) {
                                                         <img src={e.img} className="z-10 object-contain max-h-32 max-w-36 max-md:max-h-28 contrast-150 saturate-150" alt="Logo"/>
                                                     </div>
 
-                                                    <div className='overflow-auto scrollbar-thin p-3'>
+                                                    <div className='flex flex-col justify-around overflow-auto scrollbar-thin p-3'>
                                                         <div className='flex flex-wrap items-center w-full gap-2 py-3'>
                                                             {e.keywords.map((e,i)=><div key={i} className={`flex items-center text-white text-nowrap font-semibold rounded-full ${keywords[e].bg} px-2 py-1 max-md:text-[12px] max-md:p-1`}>{e}</div>)}
                                                         </div>

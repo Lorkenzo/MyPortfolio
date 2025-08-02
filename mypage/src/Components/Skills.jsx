@@ -25,13 +25,13 @@ function Skills(){
     }
 
     return(
-        <div className="flex w-full items-end max-md:items-center py-20" id="Skills">
+        <div className="flex w-full items-end max-lg:items-center py-20" id="Skills">
             <div className="flex flex-col w-full">
                 <div className="flex w-full justify-center items-center">
                     <p className={`text-[32px] font-semibold font-mono`}>My Skills</p>
                 </div>
-                <div className="flex flex-row w-full h-[550px] justify-center gap-4 justify-items-center content-center">
-                    <div className="flex w-1/2 h-[90%] justify-center">
+                <div className="flex flex-col w-full justify-center gap-4 items-center lg:flex-row">
+                    <div className="flex w-1/2 max-lg:w-[90%] h-[500px] justify-center">
                         <div className="flex flex-col h-full w-full p-3 rounded-lg bg-my_gradient_reversed backdrop-blur-md">
                             <div className="flex h-1/6 w-full items-center">
                                 <p className="text-[18px] font-semibold font-mono mx-auto">Hard Skill</p>
@@ -90,37 +90,37 @@ function Skills(){
                         </div>
 
                     </div>
-                    <div className="flex w-[30%] h-[90%] justify-center">
-                        <div className="flex flex-col h-full w-full p-2 rounded-lg bg-my_gradient_reversed justify-center backdrop-blur-md text-[16px] max-lg:text-[10px]">
+                    <div className="flex w-[40%] max-lg:w-[90%] h-[500px] max-lg:h-[400px] justify-center">
+                        <div className="flex flex-col h-full w-full p-2 rounded-lg bg-my_gradient_reversed justify-center backdrop-blur-md text-[16px]">
                             
                             <p className={`text-[18px] font-semibold font-mono mx-auto`}>Soft Skill</p>
                             
-                            <div className="flex h-1/4 items-center max-md:h-1/3">
-                                <div className="grid grid-cols-4 h-full w-full place-items-center max-md:grid-cols-2 max-md:grid-rows-2" style={{ gap: "2px" }}>   
-                                    <img className="max-h-20 object-contain max-md:max-h-10" src={ProblemSolving} alt="Problem Solving" />
-                                    <p className="font-semibold font-mono justify-self-start max-md">Problem <br/> Solving</p>
+                            <div className="flex h-1/3 items-center">
+                                <div className="grid grid-cols-4 h-full w-full place-items-center" style={{ gap: "2px" }}>   
+                                    <img className="max-h-20 object-contain" src={ProblemSolving} alt="Problem Solving" />
+                                    <p className="font-semibold font-mono justify-self-start">Problem <br/> Solving</p>
                                     
-                                    <img className="max-h-20 object-contain max-md:max-h-10" src={TeamWork} alt="Team Work" />
+                                    <img className="max-h-20 object-contain" src={TeamWork} alt="Team Work" />
                                     <p className="font-semibold font-mono justify-self-start">Team <br/> Work</p>
                                 </div>
                             </div>
 
-                            <div className="flex h-1/4 items-center max-md:h-1/3">
-                                <div className="grid grid-cols-4 h-full w-full place-items-center max-md:grid-cols-2 max-md:grid-rows-2" style={{ gap: "2px" }}>
-                                    <img className="max-h-20 object-contain max-md:max-h-10" src={CriticalThink} alt="Problem Solving" />
+                            <div className="flex h-1/3 items-center">
+                                <div className="grid grid-cols-4 h-full w-full place-items-center" style={{ gap: "2px" }}>
+                                    <img className="max-h-20 object-contain" src={CriticalThink} alt="Problem Solving" />
                                     <p className="font-semibold font-mono justify-self-start">Critical <br/> Thinking</p>  
 
-                                    <img className="max-h-20 object-contain max-md:max-h-10" src={Positive} alt="Problem Solving" />
+                                    <img className="max-h-20 object-contain" src={Positive} alt="Problem Solving" />
                                     <p className="font-semibold font-mono justify-self-start">Positive <br/> Mindset</p>
                                 </div>
                             </div>
 
-                            <div className="flex h-1/4 items-center max-md:h-1/3">
-                                <div className="grid grid-cols-4 h-full w-full place-items-center max-md:grid-cols-2 max-md:grid-rows-2" style={{ gap: "2px" }}>
-                                    <img className="max-h-20 object-contain max-md:max-h-10" src={ActiveLearning} alt="Problem Solving" />
+                            <div className="flex h-1/3 items-center">
+                                <div className="grid grid-cols-4 h-full w-full place-items-center " style={{ gap: "2px" }}>
+                                    <img className="max-h-20 object-contain" src={ActiveLearning} alt="Problem Solving" />
                                     <p className="font-semibold font-mono justify-self-start">Active <br/> Learning</p>
 
-                                    <img className="max-h-20 object-contain max-md:max-h-10" src={Proactive} alt="Team Work" />
+                                    <img className="max-h-20 object-contain" src={Proactive} alt="Team Work" />
                                     <p className="font-semibold font-mono justify-self-start">Proactive <br/> Appoach</p>
                                 </div>
                             </div> 
