@@ -153,7 +153,7 @@ const projects = [
         {
             id: 6,
             img: CatAI,
-            desc: "An intelligent tutoring system based on OpenAI API to create and design custom exercise for educators",
+            desc: "An intelligent tutoring system to create and design custom exercise for educators",
             keywords: ["webapp","AI"],
             languages: ["openai","html5","css3","js","react","tailwind"],
             url: "https://github.com/Lorkenzo/CAT-AI"

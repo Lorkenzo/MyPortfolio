@@ -57,8 +57,8 @@ function Contacts(){
                     <p className={`text-[32px] font-semibold font-mono`}>Contact Me</p>
                 </div>
                 <div className='flex flex-col gap-4 items-center justify-center w-full md:flex-row'>
-                    <div className='flex flex-col gap-3 w-[40%] items-center justify-between max-md:w-full max-md:justify-around max-md:flex-row'>
-                         <div className={`flex w-3/4 rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md max-md:w-2/5`}>
+                    <div className='flex flex-col gap-3 w-[40%] items-center justify-between max-md:w-full max-md:justify-around'>
+                         <div className={`flex w-3/4 rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md max-md:w-3/5`}>
                             <img className="w-full object-cover grayscale" src={myPhoto} alt="My Photo" />
                         </div>
                         <div className="flex flex-col max-md:justify-center">

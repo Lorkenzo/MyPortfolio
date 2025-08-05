@@ -145,7 +145,7 @@ function Projects({isMobile }) {
                                                     </div>
                                                 </div>
 
-                                                <div className={`flex ${bgClass} justify-center h-full w-full flex-col gap-1 back-slide overflow-auto`}>
+                                                <div className={`flex ${bgClass} justify-center h-full w-full flex-col gap-1 back-slide overflow-auto py-2`}>
                                                     <div className={`absolute inset-0 ${overlay_gradient}`}></div>
 
                                                     <div className="relative flex justify-center items-center pt-3">    
@@ -153,31 +153,22 @@ function Projects({isMobile }) {
                                                         <img src={e.img} className="z-10 object-contain max-h-32 max-w-36 max-md:max-h-28 contrast-150 saturate-150" alt="Logo"/>
                                                     </div>
 
-                                                    <div className='flex flex-col justify-around overflow-auto scrollbar-thin p-3'>
+                                                    <div className='flex flex-col overflow-auto scrollbar-thin p-3 h-full'>
                                                         <div className='flex flex-wrap items-center w-full gap-2 py-3'>
                                                             {e.keywords.map((e,i)=><div key={i} className={`flex items-center text-white text-nowrap font-semibold rounded-full ${keywords[e].bg} px-2 py-1 max-md:text-[12px] max-md:p-1`}>{e}</div>)}
                                                         </div>
                                                         
-                                                        <div className='flex flex-col rounded-xl max-md:m-2'>
+                                                        <div className='flex flex-grow items-center w-full rounded-xl'>
                                                             
-                                                            <p className={`text-wrap font-mono max-md:text-[12px]`}>
+                                                            <p className={`text-wrap text-center font-mono max-md:text-[12px]`}>
                                                                 {e.desc}
                                                             </p>
                                                         </div>
                                                         
-                                                        <div>   
-                                                            <Swiper
-                                                                direction={'horizontal'}
-                                                                slidesPerView={4}
-                                                                freeMode={true}
-                                                                mousewheel={true}
-                                                                scrollbar= {true}
-                                                                modules={[FreeMode, Scrollbar, Mousewheel]}
-                                                                >
-                                                                {projects[i].languages.map((e,i)=>
-                                                                    <SwiperSlide key={i}><img className="h-14 object-cover overflow-hidden max-md:h-10" src={getLogo(e)} /></SwiperSlide>
+                                                        <div className='flex flex-wrap gap-2 justify-around'>
+                                                            {projects[i].languages.map((e,i)=>
+                                                                    <img className="h-12 object-cover max-md:h-9" src={getLogo(e)} />
                                                                 )}
-                                                            </Swiper>  
                                                         </div>
 
                                                         <div className={`flex absolute inset-x-0 top-0 h-0 w-full z-10 transition-all duration-500 ease-in-out hover:h-5/6`}

@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-
 /*------ Variables (To be defined) --------*/
 :root {
     --my-bg: #F5F5F7;
@@ -22,6 +21,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
    background-color: var(--my-bg);

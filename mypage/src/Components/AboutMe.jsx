@@ -4,7 +4,7 @@ function AboutMe({isMobile}){
     return(
         <div className={`flex w-full items-end max-lg:items-center py-20`} id="About Me">
             <div className="flex flex-col-reverse w-full justify-center md:flex-row max-md:justify-end">
-                <div className="flex w-2/3 justify-center items-center max-md:w-full">
+                <div className="flex w-2/3 md:h-[500px] justify-center items-center max-md:items-start max-md:w-full">
 
                     <div className="flex h-fit py-4 w-[75%] rounded-lg bg-my_gradient_reversed justify-center items-center backdrop-blur-md max-md:w-full max-md:mx-2">
                         <div className="w-[80%]">
@@ -53,9 +53,9 @@ function AboutMe({isMobile}){
                         </div>
                     </div>
                 </div>
-                <div className="flex w-1/3 max-md:h-[150px] items-center justify-start max-md:w-full max-md:justify-center">
-                    <div className={`flex h-2/3 rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md max-md:h-full`}>
-                        <img className="h-full w-full object-cover grayscale" src={myPhoto} alt="My Photo" />
+                <div className="flex w-1/3 max-md:h-[150px] items-center justify-start max-md:w-full max-md:justify-center m-2">
+                    <div className={`flex w-2/3 max-md:size-[150px] rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md`}>
+                        <img className="object-contain grayscale" src={myPhoto} alt="My Photo" />
                     </div>
                 </div>
             </div>
