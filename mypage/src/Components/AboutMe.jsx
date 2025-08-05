@@ -53,7 +53,7 @@ function AboutMe({isMobile}){
                         </div>
                     </div>
                 </div>
-                <div className="flex w-1/3 max-md:h-[150px] items-center justify-start max-md:w-full max-md:justify-center m-2">
+                <div className="flex w-1/3 max-md:h-[150px] items-center justify-start max-md:w-full max-md:justify-center my-2">
                     <div className={`flex w-2/3 max-md:size-[150px] rounded-full bg-my_gradient_reversed overflow-hidden drop-shadow-md`}>
                         <img className="object-contain grayscale" src={myPhoto} alt="My Photo" />
                     </div>

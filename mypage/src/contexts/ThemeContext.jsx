@@ -4,19 +4,36 @@ import { createContext, useState, useEffect, useContext } from 'react';
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-    // Initialize the state based on the saved theme in localStorage, if available
+    // 1. Inizializzazione dello stato del tema
     const [isDarkMode, setIsDarkMode] = useState(() => {
-        const savedTheme = localStorage.getItem("isDarkMode");
-        return savedTheme ? JSON.parse(savedTheme) : false; // Default to light mode if no saved preference
+        // Controllo se il browser è disponibile (per il server-side rendering)
+        if (typeof window !== 'undefined') {
+            const savedTheme = localStorage.getItem("isDarkMode");
+            // Se esiste una preferenza salvata, la usiamo
+            if (savedTheme !== null) {
+                return JSON.parse(savedTheme);
+            }
+            // Altrimenti, usiamo la preferenza di sistema
+            return window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+        // Valore di default se non siamo nel browser
+        return false;
     });
 
-    // Update localStorage whenever the theme changes
+    // 2. useEffect per aggiornare la classe 'dark' e il localStorage
     useEffect(() => {
+        const root = document.documentElement;
+        if (isDarkMode) {
+            root.classList.add('dark');
+        } else {
+            root.classList.remove('dark');
+        }
         localStorage.setItem("isDarkMode", JSON.stringify(isDarkMode));
     }, [isDarkMode]);
 
+    // 3. Funzione per il toggle del tema
     const toggleTheme = () => {
-        setIsDarkMode((prevMode) => !prevMode); // Toggle the theme
+        setIsDarkMode(prevMode => !prevMode);
     };
 
     return (
@@ -26,5 +43,5 @@ export const ThemeProvider = ({ children }) => {
     );
 };
 
-// Custom hook to use the ThemeContext
+// Custom hook per usare il contesto
 export const useTheme = () => useContext(ThemeContext);
