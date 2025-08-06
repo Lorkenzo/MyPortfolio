@@ -176,7 +176,7 @@ function Projects({isMobile }) {
                                                                 onMouseLeave={() => setAriplaneAnimation(false)}>
                                                             {/* Bookmark */}
                                                             <div className="flex absolute bottom-0 right-5 z-20 translate-y-10 max-md:translate-y-7">
-                                                                <div className={`cursor-pointer animate-wiggle`}>
+                                                                <div className={`cursor-pointer animate-[wiggle_1s_ease-in-out_infinite]`}>
                                                                 <i className="bi bi-bookmark-fill fs-1"></i>
                                                                 </div>
                                                             </div>
