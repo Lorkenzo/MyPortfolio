@@ -82,8 +82,8 @@ function Skills(){
                                     transition: "opacity 0.5s ease, height 0.8s ease"
                                     }}>
                                 <div className="flex flex-col gap-2 h-full bg-my_gray p-4 rounded-md shadow overflow-auto scrollbar-thin">
-                                    <div className="font-bold text-lg">{hardskills[0].title}</div>
-                                    <div>{hardskills[0].description}</div>
+                                    <div className="font-bold text-lg">{hardskills[selectedSkill].title}</div>
+                                    <div>{hardskills[selectedSkill].description}</div>
                                 </div>
                             </div>
                             }
