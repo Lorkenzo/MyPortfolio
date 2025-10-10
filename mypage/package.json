@@ -18,6 +18,7 @@
     "dayjs": "^1.11.13",
     "express-validator": "^7.2.0",
     "framer-motion": "^12.4.10",
+    "lucide-react": "^0.545.0",
     "my_portfolio": "file:",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
