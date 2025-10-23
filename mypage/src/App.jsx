@@ -20,16 +20,15 @@ function App() {
   const { isDarkMode } = useTheme();
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
-    <Router basename="/">
+    <Router>
       <Routes>
+        {/* 🏠 Route principale con tutte le sezioni */}
         <Route
           path="/"
           element={
@@ -50,6 +49,8 @@ function App() {
             </div>
           }
         />
+
+        {/* ❤️ Pagina separata per i ringraziamenti */}
         <Route path="/greatings" element={<Greatings />} />
       </Routes>
     </Router>
